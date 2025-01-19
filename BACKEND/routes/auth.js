@@ -1,6 +1,6 @@
 const express = require('express');
 const router=express.Router();
-const user=require('../MODELS/User');
+const User=require('../MODELS/User');
 const bcrypt=require('bcrypt');
 const getToken = require('../utils/helper');
 
@@ -10,7 +10,7 @@ router.post('/register',async(req,res)=>{
     const{email,password,firstname,lastname, username} = req.body;
 
     //step 2: User already exists with this email?? if yes, throw an error
-    const user=user.findOne({ email: email});
+    const user=User.findOne({ email: email});
     if(user){
         return res
         .status(403)
